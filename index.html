@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BlueBear Open Source</title>
+<meta name="description" content="Open source projects from BlueBear Security: Baloo, Angry Bear, Bear Metal, and Nikui.">
+<style>
+  :root {
+    --bg: #fafafa; --fg: #1a1a1a; --muted: #5c5c66; --card: #ffffff;
+    --border: #e4e4e8; --accent: #5b3fd1;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #121214; --fg: #ececf0; --muted: #a0a0ab; --card: #1c1c20;
+      --border: #2c2c33; --accent: #a594ff;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--fg);
+    font: 16px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  main { max-width: 760px; margin: 0 auto; padding: 64px 16px; }
+  h1 { font-size: 1.9rem; margin: 0 0 8px; letter-spacing: -0.01em; }
+  .lede { color: var(--muted); margin: 0 0 40px; }
+  ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
+  li {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 10px; padding: 18px 20px;
+  }
+  h2 { font-size: 1.1rem; margin: 0 0 4px; }
+  p { margin: 0 0 10px; color: var(--muted); }
+  .links { display: flex; flex-wrap: wrap; gap: 16px; font-size: 0.95rem; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  footer { margin-top: 48px; color: var(--muted); font-size: 0.9rem; }
+</style>
+</head>
+<body>
+<main>
+  <h1>BlueBear Open Source</h1>
+  <p class="lede">Open source projects from <a href="https://bluebear.io">BlueBear Security</a>.</p>
+  <ul>
+    <li>
+      <h2>Baloo</h2>
+      <p>Self-hosted AI code review agent for GitHub pull requests.</p>
+      <div class="links">
+        <a href="baloo-bear/">Documentation</a>
+        <a href="https://github.com/bluebear-io/baloo-bear">GitHub</a>
+        <a href="https://bluebear.io/projects/baloo-bear">Project page</a>
+      </div>
+    </li>
+    <li>
+      <h2>Angry Bear</h2>
+      <p>Enforce skill-loading requirements for AI coding agents.</p>
+      <div class="links">
+        <a href="https://github.com/bluebear-io/angry-bear">GitHub</a>
+        <a href="https://bluebear.io/projects/angry-bear">Project page</a>
+      </div>
+    </li>
+    <li>
+      <h2>Bear Metal</h2>
+      <p>Autonomous coding agent that picks up tasks from Linear, implements them, and opens pull requests ready to merge.</p>
+      <div class="links">
+        <a href="https://github.com/bluebear-io/bear-metal">GitHub</a>
+        <a href="https://bluebear.io/projects/bear-metal">Project page</a>
+      </div>
+    </li>
+    <li>
+      <h2>Nikui</h2>
+      <p>Find code hotspots before they find you, with LLM and static analysis plus Git churn.</p>
+      <div class="links">
+        <a href="https://github.com/bluebear-io/nikui">GitHub</a>
+      </div>
+    </li>
+  </ul>
+  <footer>&copy; BlueBear Security &middot; <a href="https://github.com/bluebear-io">github.com/bluebear-io</a></footer>
+</main>
+</body>
+</html>
