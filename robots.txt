@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://oss.bluebear.io/baloo-bear/sitemap.xml
