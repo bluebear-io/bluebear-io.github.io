@@ -6,8 +6,9 @@ Landing page for Bluebear's open source projects. Project docs sites in this org
 
 The landing page uses PostHog for cookieless page views and project-link clicks
 (`project_link_clicked`, with `project` and `link_type` properties).
-`cookieless_mode: 'always'` and `disable_persistence: true` prevent analytics
-cookies and local/session storage. Person profiles, autocapture, session replay,
+`disable_persistence: true` prevents analytics cookies and local/session storage
+for this site only. Anonymous IDs live in memory and reset on each page load,
+so unique-visitor and session counts do not represent returning visitors. Person profiles, autocapture, session replay,
 surveys, browser error capture, and browser logs are disabled. Project documentation sites deployed
 from other repositories need their own integration.
 
@@ -26,10 +27,10 @@ window.__POSTHOG_ENV__ = {
 
 Use a test project for local previews to keep development events out of production.
 
-Before deployment, enable **Cookieless server hash mode** under
-[Project Settings > Web analytics](https://us.posthog.com/project/266998/settings).
-This server setting is required in addition to the browser configuration.
-PostHog uses a daily server-side hash for audience measurement; users cannot be
-tracked across days. See [PostHog's cookieless guidance](https://posthog.com/tutorials/cookieless-tracking).
+No PostHog project-wide setting changes are required. Do not enable Cookieless
+server hash mode for this integration: it uses ordinary events with persistence
+disabled, rather than PostHog's server-hashed cookieless mode. Other sites using
+the same PostHog project keep their own SDK configuration.
+See [PostHog's SDK configuration](https://posthog.com/docs/libraries/js/config).
 Cookieless configuration does not by itself establish exemption from all consent
 or privacy obligations; those depend on the applicable rules and deployment.

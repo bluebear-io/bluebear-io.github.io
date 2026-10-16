@@ -21,7 +21,7 @@
     window.posthog.init(projectToken, {
       api_host: apiHost,
       defaults: '2026-05-30',
-      cookieless_mode: 'always',
+      // Site-local storage opt-out; no project-wide server hash mode required.
       disable_persistence: true,
       person_profiles: 'never',
       autocapture: false,
