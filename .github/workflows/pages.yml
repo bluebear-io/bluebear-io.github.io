@@ -22,6 +22,28 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Generate PostHog configuration
+        env:
+          POSTHOG_PROJECT_TOKEN: ${{ vars.POSTHOG_PROJECT_TOKEN }}
+          POSTHOG_HOST: ${{ vars.POSTHOG_HOST }}
+        run: |
+          python3 - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+
+          config = {
+              "POSTHOG_PROJECT_TOKEN": os.environ["POSTHOG_PROJECT_TOKEN"],
+              "POSTHOG_HOST": os.environ["POSTHOG_HOST"],
+          }
+          for name, value in config.items():
+              if not value:
+                  raise SystemExit(f"{name} GitHub repository variable is required")
+          Path("posthog-env.js").write_text(
+              f"window.__POSTHOG_ENV__ = {json.dumps(config)}\n",
+              encoding="utf-8",
+          )
+          PY
       - uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
         with:
           path: .

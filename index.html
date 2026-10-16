@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Bluebear Open Source</title>
 <meta name="description" content="Open source projects from Bluebear Security: Baloo, Angry Bear, Bear Metal, and Nikui.">
+<script src="posthog-env.js"></script>
+<script src="posthog-init.js" defer></script>
 <style>
   :root {
     --bg: #fafafa; --fg: #1a1a1a; --muted: #5c5c66; --card: #ffffff;
@@ -46,36 +48,50 @@
       <h2>Baloo</h2>
       <p>Self-hosted AI code review agent for GitHub pull requests.</p>
       <div class="links">
-        <a href="baloo-bear/">Documentation</a>
-        <a href="https://github.com/bluebear-io/baloo-bear">GitHub</a>
-        <a href="https://bluebear.io/projects/baloo-bear">Project page</a>
+        <a href="baloo-bear/" data-project="baloo" data-link-type="documentation">Documentation</a>
+        <a href="https://github.com/bluebear-io/baloo-bear" data-project="baloo" data-link-type="github">GitHub</a>
+        <a href="https://bluebear.io/projects/baloo-bear" data-project="baloo" data-link-type="project_page">Project page</a>
       </div>
     </li>
     <li>
       <h2>Angry Bear</h2>
       <p>Enforce skill-loading requirements for AI coding agents.</p>
       <div class="links">
-        <a href="https://github.com/bluebear-io/angry-bear">GitHub</a>
-        <a href="https://bluebear.io/projects/angry-bear">Project page</a>
+        <a href="https://github.com/bluebear-io/angry-bear" data-project="angry_bear" data-link-type="github">GitHub</a>
+        <a href="https://bluebear.io/projects/angry-bear" data-project="angry_bear" data-link-type="project_page">Project page</a>
       </div>
     </li>
     <li>
       <h2>Bear Metal</h2>
       <p>Autonomous coding agent that picks up tasks from Linear, implements them, and opens pull requests ready to merge.</p>
       <div class="links">
-        <a href="https://github.com/bluebear-io/bear-metal">GitHub</a>
-        <a href="https://bluebear.io/projects/bear-metal">Project page</a>
+        <a href="https://github.com/bluebear-io/bear-metal" data-project="bear_metal" data-link-type="github">GitHub</a>
+        <a href="https://bluebear.io/projects/bear-metal" data-project="bear_metal" data-link-type="project_page">Project page</a>
       </div>
     </li>
     <li>
       <h2>Nikui</h2>
       <p>Find code hotspots before they find you, with LLM and static analysis plus Git churn.</p>
       <div class="links">
-        <a href="https://github.com/bluebear-io/nikui">GitHub</a>
+        <a href="https://github.com/bluebear-io/nikui" data-project="nikui" data-link-type="github">GitHub</a>
       </div>
     </li>
   </ul>
   <footer>&copy; Bluebear Security &middot; <a href="https://github.com/bluebear-io">github.com/bluebear-io</a></footer>
 </main>
+<script>
+  document.addEventListener('click', function (event) {
+    const link = event.target.closest('a[data-project]');
+    if (!link || !window.posthog?.capture) return;
+
+    const logAttributes = {
+      project: link.dataset.project,
+      link_type: link.dataset.linkType,
+    };
+
+    window.posthog.capture('project_link_clicked', logAttributes);
+    window.posthog.logger?.info('project_link_clicked', logAttributes);
+  });
+</script>
 </body>
 </html>
