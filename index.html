@@ -84,12 +84,13 @@
     const link = event.target.closest('a[data-project]');
     if (!link || !window.posthog?.capture) return;
 
-    const properties = {
+    const logAttributes = {
       project: link.dataset.project,
       link_type: link.dataset.linkType,
     };
 
-    window.posthog.capture('project_link_clicked', properties);
+    window.posthog.capture('project_link_clicked', logAttributes);
+    window.posthog.logger?.info('project_link_clicked', logAttributes);
   });
 </script>
 </body>

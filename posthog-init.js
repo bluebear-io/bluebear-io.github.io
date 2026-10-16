@@ -21,13 +21,17 @@
     window.posthog.init(projectToken, {
       api_host: apiHost,
       defaults: '2026-05-30',
-      // Site-local storage opt-out; no project-wide server hash mode required.
-      disable_persistence: true,
-      person_profiles: 'never',
-      autocapture: false,
-      disable_session_recording: true,
-      disable_surveys: true,
-      capture_exceptions: false,
+      logs: {
+        serviceName: 'bluebear-open-source-web',
+      },
+      capture_exceptions: {
+        capture_unhandled_errors: true,
+        capture_unhandled_rejections: true,
+        capture_console_errors: false,
+      },
+    })
+    window.posthog.logger?.info('landing_page_initialized', {
+      page: 'open_source_landing',
     })
   }
   document.head.appendChild(sdkScript)
